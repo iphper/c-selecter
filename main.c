@@ -15,6 +15,10 @@ int win_main(int, char* []);
 int linux_main(int, char* []);
 // 初始化函数
 void initialize(int, char* []);
+// 渲染列表
+void render_list();
+// todo 监听键盘事件
+// todo 获取输入项
 
 /* 全局变量 */
 // 参数列表
@@ -89,17 +93,29 @@ void initialize(int argc, char* argv[])
             memmove(key, key+2, strlen(key) + 1);
 
             // 对参数进行保存
+            // 标题
             if (strcmp(key, "label") == 0) 
             {
                 strcpy(label, param[1]);
             }
+            // 列表
             else if(strcmp(key, "list[]") == 0)
             {
                 // 列表保存
+                list[listLen] = malloc(strlen(param[1]) * sizeof(char*));
+                strcpy(list[listLen], param[1]);
+                ++listLen;
+                list = realloc(list, sizeof(char*));
             }
+            // 默认
+            else if(strcmp(key, "def") == 0)
+            {
+                def = atoi(param[1]);
+            }
+            // 其它参数
             else
             {
-                printf("其它参数:%s=%s\n", key, param[1]);
+                // printf("其它参数:%s=%s\n", key, param[1]);
             }
         }
     }
