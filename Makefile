@@ -6,4 +6,4 @@ LIBS := -I./lib
 
 # 主入口
 main : main.c
-	gcc $(LIBS) main.c -o ./build/selecter
+	gcc $(LIBS) main.c -o ./build/selecter -std=c99
